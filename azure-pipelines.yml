@@ -9,6 +9,14 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+jobs:
+- job:
+  variables:
+    x: 1
+    a: $[counter(1, 0)]
+    steps:
+    - bash: echo $(x) is incrmented by 1 to get $(a)
+
 steps:
 - task: Xcode@4
   inputs:

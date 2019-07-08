@@ -14,13 +14,12 @@ jobs:
     name: $(BuildDefinitionName)-$(Rev:.r)
     majorVersion: 1
     minorVersion: 0
-    patchVersion: 0
-    updatedPatchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchVersion'])]
-    buildVersion: $(variables['majorVersion']).$(variables['minorVersion']).$(variables['updatedPatchVersion'])
+    patchInitialVersion: 0
+    patchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchInitialVersion'])]
   steps:
     - bash: echo $(x) is incremented by 1 to get build number as $(buildVersion)
     - bash: echo Azure Build Number Before Update $(Build.BuildNumber)
-    - bash: echo "##vso[task.setvariable variable=Build.BuildNumber;]$(buildVersion)"
+    - bash: echo "##vso[task.setvariable variable=Build.BuildNumber;]$(majorVersion).$(minorVersion).$(patchVersion)"
     - bash: echo Azure Build Number After Update $(Build.BuildNumber)
     - task: Xcode@4
       inputs:

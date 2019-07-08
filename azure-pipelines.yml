@@ -6,23 +6,24 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'macos-latest'
-
 jobs:
 - job:
+  pool:
+    vmImage: 'macOS-latest'
   variables:
-    x: 1
-    a: $[counter(1, 0)]
-    steps:
-    - bash: echo $(x) is incrmented by 1 to get $(a)
+    name: $(BuildDefinitionName)-$(Rev:.r)
+    x: 10
+    a: $[counter(variables['x'], 0)]
+  steps:
+    - bash: echo $(x) is incremented by 1 to get $(a)
+    - bash: echo Build Definition Name - $(name)
+    - bash: echo Build Number $(Build.BuildNumber)
+    - task: Xcode@4
+      inputs:
+        actions: 'build'
+        scheme: 'TestIOSApp'
+        sdk: 'iphoneos'
+        configuration: 'Release'
+        xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+        xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
 
-steps:
-- task: Xcode@4
-  inputs:
-    actions: 'build'
-    scheme: 'TestIOSApp'
-    sdk: 'iphoneos'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath

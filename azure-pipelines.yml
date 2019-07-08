@@ -15,7 +15,7 @@ jobs:
     x: 0
     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['x'])]
   steps:
-    - bash: echo $(x) is incremented by 1 to get $(a)
+    - bash: echo $(x) is incremented by 1 to get build number as 1.0.$(a)
     - bash: echo Build Definition Name - $(name)
     - bash: echo Type 1 Build is equal to $(Build.BuildNumber)
     - task: Xcode@4

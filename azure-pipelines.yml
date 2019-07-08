@@ -13,9 +13,9 @@ jobs:
   variables:
     name: $(BuildDefinitionName)-$(Rev:.r)
     x: 11
-    a: $[counter(1, variables['x'])]
+    a: $[counter(5, variables['x'])]
   steps:
-    - bash: echo $(x) is incremented by 1 to get $(a)
+    - bash: echo $(x) is incremented by 5 to get $(a)
     - bash: echo Build Definition Name - $(name)
     - bash: echo Build is equal to $(Build.BuildNumber)
     - task: Xcode@4

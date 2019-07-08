@@ -16,7 +16,7 @@ jobs:
     minorVersion: 0
     patchVersion: 0
     updatedPatchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchVersion'])]
-    buildVersion: variables['majorVersion'].variables['minorVersion'].variables['updatedPatchVersion']
+    buildVersion: $(variables['majorVersion']).$(variables['minorVersion']).$(variables['updatedPatchVersion'])
   steps:
     - bash: echo $(x) is incremented by 1 to get build number as $(buildVersion)
     - bash: echo Azure Build Number Before Update $(Build.BuildNumber)

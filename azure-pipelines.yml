@@ -12,8 +12,8 @@ jobs:
     vmImage: 'macOS-latest'
   variables:
     name: $(BuildDefinitionName)-$(Rev:.r)
-    x: 10
-    a: $[counter(variables['x'], 1)]
+    x: 11
+    a: $[counter(1, variables['x'])]
   steps:
     - bash: echo $(x) is incremented by 1 to get $(a)
     - bash: echo Build Definition Name - $(name)

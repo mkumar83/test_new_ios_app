@@ -17,7 +17,7 @@ jobs:
   steps:
     - bash: echo $(x) is incremented by 1 to get $(a)
     - bash: echo Build Definition Name - $(name)
-    - bash: echo Build Number $(Build.BuildNumber)
+    - bash: echo Build is $(Build.BuildNumber)
     - task: Xcode@4
       inputs:
         actions: 'build'

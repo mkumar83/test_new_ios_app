@@ -6,21 +6,21 @@
 trigger:
 - master
 
+variables:
+  majorVersion: 1
+  minorVersion: 0
+  patchInitialVersion: 0
+  patchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchInitialVersion'])]
+  name: $(majorVersion).$(minorVersion).$(patchVersion)
+
 jobs:
 - job:
   pool:
     vmImage: 'macOS-latest'
-  variables:
-    name: MyDEVNew-$(rev:r)
-    majorVersion: 1
-    minorVersion: 0
-    patchInitialVersion: 0
-    patchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchInitialVersion'])]
   steps:
     - bash: echo $(x) is incremented by 1 to get build number as $(buildVersion)
     - bash: echo Azure Build Number Before Update $(Build.BuildNumber)
     - bash: echo Write-Host "##vso[task.setvariable variable=Build.BuildNumber;]$(majorVersion).$(minorVersion).$(patchVersion)"
-    - bash: echo Write-Host "##vso[task.setvariable variable=name;]$(majorVersion).$(minorVersion).$(patchVersion)"
     - bash: echo Azure Build Number After Update $(Build.BuildNumber)
     - task: Xcode@4
       inputs:

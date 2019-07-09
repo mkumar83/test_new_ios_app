@@ -7,7 +7,7 @@ trigger:
 - master
 
 variables:
-  releaseNumber: 1907
+  releaseNumber: 1908
   majorVersion: 1
   minorVersion: 0
   patchInitialVersion: 0

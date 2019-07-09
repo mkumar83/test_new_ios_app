@@ -11,8 +11,8 @@ variables:
   minorVersion: 0
   patchInitialVersion: 0
   patchVersion: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), variables['patchInitialVersion'])]
-  name: $(majorVersion).$(minorVersion).$(patchVersion)
 
+name: $(majorVersion).$(minorVersion).$(patchVersion)
 jobs:
 - job:
   pool:

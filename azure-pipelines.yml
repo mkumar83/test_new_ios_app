@@ -6,12 +6,12 @@
 trigger:
 - master
 
-name: MyDEV-$(rev:r)
 jobs:
 - job:
   pool:
     vmImage: 'macOS-latest'
   variables:
+    name: MyDEVNew-$(rev:r)
     majorVersion: 1
     minorVersion: 0
     patchInitialVersion: 0

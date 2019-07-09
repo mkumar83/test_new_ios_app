@@ -7,10 +7,11 @@ trigger:
 - master
 
 variables:
+  releaseNumber: 1907
   majorVersion: 1
   minorVersion: 0
   patchInitialVersion: 0
-  patchVersion: $[counter(0, variables['patchInitialVersion'])]
+  patchVersion: $[counter(variables['releaseNumber'], variables['patchInitialVersion'])]
 
 name: $(majorVersion).$(minorVersion).$(patchVersion)
 jobs:

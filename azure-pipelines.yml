@@ -19,7 +19,7 @@ jobs:
   steps:
     - bash: echo $(x) is incremented by 1 to get build number as $(buildVersion)
     - bash: echo Azure Build Number Before Update $(Build.BuildNumber)
-    - bash: Write-Host "##vso[task.setvariable variable=Build.BuildNumber;]$(majorVersion).$(minorVersion).$(patchVersion)"
+    - bash: echo "Write-Host ##vso[task.setvariable variable=Build.BuildNumber;]$(majorVersion).$(minorVersion).$(patchVersion)"
     - bash: echo Azure Build Number After Update $(Build.BuildNumber)
     - task: Xcode@4
       inputs:
